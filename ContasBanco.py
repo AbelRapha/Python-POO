@@ -87,3 +87,6 @@ class CartaoCredito:
         conta_corrente.cartoes.append(self)
 
 
+if __name__ == "__main__": 
+    #Comando para ignorar quando for ser importando por outro script
+    pass

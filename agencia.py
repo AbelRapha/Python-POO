@@ -56,23 +56,30 @@ class AgenciaComum(Agencia):
             print("Saldo insuficiente para realizar a transacao")
         else: 
             self.caixa += valor
+
 class AgenciaPremium(Agencia):
 
     def __init__(self, telefone, cnpj):
         super().__init__(telefone, cnpj, numero=randint(1001, 9999))
         self.caixa = 10000000
+    
+    def adicionar_cliente(self, nome, cpf, patrimonio):
+        if patrimonio > 1000000:
+            return super().adicionar_cliente(nome, cpf, patrimonio)
+        else:
+            print("O cliente não tem o patrimônio mínimo necessário para entrar na agência Premium")
 
 
-       
-agencia1 = Agencia(2222222, 2223300239, 4568)
-agencia_virtual = AgenciaVirtual('www.kdsjahdksa.com.br', 222223333, 1224433456,1234 )
+if __name__ == "__main__":
+    agencia1 = Agencia(2222222, 2223300239, 4568)
+    agencia_virtual = AgenciaVirtual('www.kdsjahdksa.com.br', 222223333, 1224433456,1234 )
 
-agencia_virtual.verificar_caixa()
+    agencia_virtual.verificar_caixa()
 
-agencia_comum = AgenciaComum(2222222,223432353)
-agencia_comum.verificar_caixa()
+    agencia_comum = AgenciaComum(2222222,223432353)
+    agencia_comum.verificar_caixa()
 
-agencia_comum.depositar_paypal(1000)
-print(agencia_comum.caixa_paypal)
-agencia_comum.sacar_paypal(200)
-print(agencia_comum.caixa_paypal)
+    agencia_premium = AgenciaPremium(22222222,555555555555)
+    agencia_premium.adicionar_cliente('Abel', 334323522121, 100000000)
+    print(agencia_premium.clientes)
+    agencia_premium.verificar_caixa()
